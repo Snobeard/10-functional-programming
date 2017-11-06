@@ -76,24 +76,27 @@ var app = app || {};
       // DONE: Transform each author string into an object with properties for the author's name, as well as the total number of words across all articles written by the specified author.
       // HINT: This .map() should be set up to return an object literal with two properties.
       // The first property should be pretty straightforward, but you will need to chain some combination of .filter(), .map(), and .reduce() to get the value for the second property.
-
-      let numWords = Article.all.map((current) => {
+      let filteredAuthors = Article.all.map((current) => {
         return {
           name: current.author,
-          words: (current.title.split(/\s+/).length) + (current.body.split(/\s+/).length)
+          words: (current.title.split(/\s+/).length) + (current.body.split(/\s+/).length),
+          url: current.authorUrl
         }
       // apply filter on array of objects for each article containing the author name and number of words
       }).filter(current => {
         return current.name === author;
+      })
+
       // apply reduce on array of objects containing specific author
-      }).reduce((acc, cur) => {
+      let numWords = filteredAuthors.reduce((acc, cur) => {
         return acc + cur.words;
       }, 0)
       // numwords now contains the accumulated words for the specific author
 
       return {
         author: author,
-        totalWords: numWords
+        totalWords: numWords,
+        url: filteredAuthors[0].url
       };
 
     });
