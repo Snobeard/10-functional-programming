@@ -36,7 +36,7 @@ var app = app || {};
 
     /* OLD forEach():
     rows.forEach(articleObject => Article.all.push(new Article(articleObject)))
-  */
+    */
     Article.all = rows.map(articleObject => new Article(articleObject));
 
   };
