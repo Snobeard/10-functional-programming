@@ -1,12 +1,14 @@
 'use strict';
 var app = app || {};
 
-// TODO: Wrap the contents of this file, except for the preceding 'use strict' and 'var app...' declararions, in an IIFE.
+// DONE: Wrap the contents of this file, except for the preceding 'use strict' and 'var app...' declararions, in an IIFE.
 // Give the IIFE a parameter called 'module'.
 // At the very end of the code, but still inside the IIFE, attach the 'articleView' object to 'module'.
 // Where the IIFE is invoked, pass in the global 'app' object that is defined above.
 // Keep in mind that all references to 'Article' in this file now need to be renamed to 'app.Article'. There are not separate instructions for those; you'll need to debug and find them on your own.
-((module) => {var articleView = {};
+((module) => {
+
+  var articleView = {};
 
   articleView.populateFilters = () => {
     $('article').each(function() {
@@ -119,7 +121,7 @@ var app = app || {};
 
     article.insertRecord();
 
-    // REVIEW: The following line of code redirects the user back to the home page after submitting the form.
+    // REVIEWed: The following line of code redirects the user back to the home page after submitting the form.
     window.location = '../';
   }
 
@@ -135,6 +137,7 @@ var app = app || {};
   };
 
   articleView.initAdminPage = () => {
+    let template = Handlebars.compile(document.getElementById('#admin-template').innerHTML);
     // TODO: Call the Handlebars .compile() method, which will return a function for you to use where needed.
     // Make sure you assign the result of your Handlebars.compile call to a variable called "template", since we are then calling "template" below.
 
